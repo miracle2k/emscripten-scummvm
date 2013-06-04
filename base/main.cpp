@@ -323,13 +323,25 @@ static void setupKeymapper(OSystem &system) {
 
 }
 
+typedef void (*FuncPtr)();
+FuncPtr mainLoopUpdateFunc = 0;
+
+void mainLoop()
+{
+	printf("Entering main loop!");
+#ifndef EMSCRIPTEN
+	while(mainLoopUpdateFunc)
+		mainLoopUpdateFunc();
+#endif
+}
+
 extern "C" int scummvm_main(int argc, const char * const argv[]) {
 	Common::String specialDebug;
 	Common::String command;
 
-	argc = 2;
-	const char * const args[2] = { "", "tentacle-demo" };
-	argv = args;
+//	argc = 2;
+//	const char * const args[2] = { "", "tentacle-demo" };
+//	argv = args;
 	// Verify that the backend has been initialized (i.e. g_system has been set).
 	assert(g_system);
 	OSystem &system = *g_system;
@@ -454,6 +466,7 @@ extern "C" int scummvm_main(int argc, const char * const argv[]) {
 
 			// Try to run the game
 			Common::Error result = runGame(plugin, system, specialDebug);
+			mainLoop();
 			return 0;
 
 			// Flush Event recorder file. The recorder does not get reinitialized for next game
