@@ -330,6 +330,13 @@ static void setupKeymapper(OSystem &system) {
 typedef void (*FuncPtr)();
 FuncPtr mainLoopUpdateFunc = 0;
 
+void update(void *)
+{
+	if (mainLoopUpdateFunc)
+		mainLoopUpdateFunc();
+	emscripten_async_call(update, 0, 1);
+}
+
 void mainLoop()
 {
 	printf("Entering main loop!");
@@ -337,7 +344,8 @@ void mainLoop()
 	while(mainLoopUpdateFunc)
 		mainLoopUpdateFunc();
 #else
-	emscripten_set_main_loop(mainLoopUpdateFunc, 0, 0);
+	//emscripten_set_main_loop(mainLoopUpdateFunc, 20, 0);
+	update(0);
 #endif
 }
 
