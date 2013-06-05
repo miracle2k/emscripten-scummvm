@@ -333,25 +333,19 @@ void emscriptenUpdate(void *)
 {
 	if (mainLoopUpdateFunc)
 		mainLoopUpdateFunc();
-}
-
-void update(void *)
-{
-	if (mainLoopUpdateFunc)
-		mainLoopUpdateFunc();
-	emscripten_async_call(update, 0, 1);
+//	warning("Update at %f", (float)emscripten_get_now());
+        emscripten_async_call(emscriptenUpdate, 0, 1);
 }
 
 void mainLoop()
 {
 	printf("Entering main loop!");
-#ifndef EMSCRIPTEN
-	while(mainLoopUpdateFunc)
-#else
-	//emscripten_set_main_loop(mainLoopUpdateFunc, 20, 0);
-	update(0);
-#endif
-		emscriptenUpdate(0);
+//#ifndef EMSCRIPTEN
+//	while(mainLoopUpdateFunc)
+//#endif
+//		emscriptenUpdate(0);
+//	emscripten_set_main_loop(mainLoopUpdateFunc, 1, 0);
+	emscripten_async_call(emscriptenUpdate, 0, 1);
 }
 
 extern "C" int scummvm_main(int argc, const char * const argv[]) {
