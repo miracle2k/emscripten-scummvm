@@ -31,12 +31,16 @@
 // Custom nullptr replacement. This is not type safe as the real C++11 nullptr
 // though.
 //
+#ifndef nullptr
 #define nullptr 0
+#endif
 
 //
 // Replacement for the override keyword. This allows compilation of code
 // which uses it, but does not feature any semantic.
 //
+#ifndef override
 #define override
+#endif
 
 #endif
