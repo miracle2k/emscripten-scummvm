@@ -23,6 +23,10 @@
 #ifndef COMMON_SCUMMSYS_H
 #define COMMON_SCUMMSYS_H
 
+#ifndef USE_RGB_COLOR
+//#define USE_RGB_COLOR
+#endif
+
 // This is a convenience macro to test whether the compiler used is a GCC
 // version, which is at least major.minor.
 #define GCC_ATLEAST(major, minor) (defined(__GNUC__) && (__GNUC__ > (major) || (__GNUC__ == (major) && __GNUC_MINOR__ >= (minor))))
