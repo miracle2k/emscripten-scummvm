@@ -11,7 +11,7 @@ Build Instructions
 
 2. Clone emscripten-scummvm. Check out the branch emscripten.
 
-3. Download a ScummVM game demo, e.g. one of http://scummvm.org/demos/ and unzip it to the local filesystem.
+3. Download a ScummVM game demo, e.g. one of https://scummvm.org/demos/ and unzip it to the local filesystem.
 
 4. Configure build with the game data.
 
