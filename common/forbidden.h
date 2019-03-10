@@ -38,7 +38,8 @@
  * in frontend code. However, this should only be used as a temporary
  * measure. Especially new code should avoid this at all costs.
  */
-
+//#define FORBIDDEN_SYMBOL_ALLOW_ALL added by gr33k to fix Ubuntu18.04 Emscripten 1.38.27 compile
+#define FORBIDDEN_SYMBOL_ALLOW_ALL
 #ifndef FORBIDDEN_SYMBOL_ALLOW_ALL
 
 // Make sure scummsys.h is always included first
