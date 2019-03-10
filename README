@@ -19,9 +19,9 @@ Build Instructions
 
 4. Configure build with the game data.
 
-export PATH=$PATH:~/emscripten
-export CXX=~/emscripten/em++
-export LDFLAGS="-O2 -s TOTAL_MEMORY=268435456 --preload-file ~/path/to/monkey1-amiga-demo-en/@/monkey/"
+export PATH=$PATH:/root/emsdk/emscripten/1.38.27/system
+export CXX=/root/emsdk/emscripten/1.38.27/em++
+export LDFLAGS="-O2 -s TOTAL_MEMORY=268435456 --preload-file ./monkey1-amiga-demo-en/@/monkey/"
 
 Change the path above to point to where you downloaded the game to. Note that the destination path is important and depends on the ScummVM game you are running. The TOTAL_MEMORY statement specifices how much of HEAP space to allocate in the generated emscripten application at startup.
 
@@ -39,7 +39,7 @@ This will configure the build to use the emscripten version of SDL, and not the 
 
 7. Configure the build by invoking in the emscripten-scummvm root directory:
 
-   emconfigure ./configure --with-sdl-prefix=~/emscripten --disable-all-engines --enable-engine-static=scumm --backend=sdl --disable-bink --disable-mt32emu --disable-16bit --disable-scalers --disable-hq-scalers --disable-alsa --disable-vorbis --disable-tremor --disable-mad --disable-flac --disable-zlib --disable-opengl --disable-png --disable-theoradec --disable-faad --disable-fluidsynth --disable-nasm --disable-readline --disable-libunity --disable-sndio --disable-timidity
+   emconfigure ./configure --disable-all-engines --enable-engine-static=scumm --backend=sdl --disable-bink --disable-mt32emu --disable-16bit --disable-scalers --disable-hq-scalers --disable-alsa --disable-vorbis --disable-tremor --disable-mad --disable-flac --disable-zlib --disable-opengl --disable-png --disable-theoradec --disable-faad --disable-fluidsynth --disable-nasm --disable-readline --disable-libunity --disable-sndio --disable-timidity --with-sdl-prefix=/root/emsdk/emscripten/1.38.27/system
    
 8. Run the build by invoking in the emscripten-scummvm root directory:
 
